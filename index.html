@@ -129,7 +129,7 @@
         </div>
         <div class="block-comparison__specifications specifications" id="scroll2" onscroll="SyncScroll('scroll2')">
           <div class="specifications__block">
-            <div class="specifications__title">Цвет ткани, заявленный производителем </div>
+            <div class="specifications__title"><span>Цвет ткани, заявленный производителем</span></div>
             <div class="specifications__row">
               <div class="specifications__col">Белый</div>
               <div class="specifications__col">Серый</div>
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="specifications__block">
-            <div class="specifications__title">Материал каркаса</div>
+            <div class="specifications__title"><span>Материал каркаса</span></div>
             <div class="specifications__row">
               <div class="specifications__col">Металл</div>
               <div class="specifications__col">Дерево</div>
@@ -151,7 +151,7 @@
             </div>
           </div>
           <div class="specifications__block">
-            <div class="specifications__title">Размеры</div>
+            <div class="specifications__title"><span>Размеры</span></div>
             <div class="specifications__row">
               <div class="specifications__col">56x59x120</div>
               <div class="specifications__col">140x100x90</div>
@@ -175,6 +175,31 @@
     } else {
       scroll1.scrollLeft = scroll2.scrollLeft;
     }
+  }
+
+  $(document).ready(function () {
+    widthTitle();
+  });
+  $(window).resize(function () {
+    widthTitle();
+  });
+
+  function widthTitle() {
+    let
+      i = 0,
+      childrenLength,
+      arrLength = [],
+      maxLength,
+      widthTitle;
+    $('.specifications__title').each(function () {
+      let $this = $(this);
+      value = $this.next().children().length;
+      arrLength.push(value);
+      maxLength = Math.max.apply(null, arrLength);
+      widthTitle = $('.specifications__col').width() * maxLength;
+      $this.css('width', `${widthTitle}px`);
+      i++;
+    });
   }
 </script>
 
